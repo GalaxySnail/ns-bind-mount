@@ -17,3 +17,7 @@ Modes:
 ```
 
 The dstpath should be an absolute path.
+
+## License
+
+LGPL-2.1-or-later

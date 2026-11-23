@@ -18,6 +18,16 @@ Modes:
 
 The dstpath should be an absolute path.
 
+## Building and testing
+
+```
+make            # build ./ns-bind-mount
+make test       # run the test suite
+```
+
+Tests live in `tests/` and need no root: they create their own user and mount
+namespaces. See `tests/run-tests.sh` for details.
+
 ## License
 
 LGPL-2.1-or-later

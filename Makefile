@@ -5,7 +5,7 @@ LDFLAGS ?=
 TARGET  := ns-bind-mount
 PREFIX  ?= /usr/local
 
-.PHONY: all clean install uninstall
+.PHONY: all clean test install uninstall
 
 all: $(TARGET)
 
@@ -14,6 +14,9 @@ $(TARGET): ns_bind_mount.c
 
 clean:
 	rm -f $(TARGET)
+
+test: $(TARGET)
+	BIN=$(CURDIR)/$(TARGET) tests/run-tests.sh
 
 install: $(TARGET)
 	install -Dm755 $(TARGET) $(DESTDIR)$(PREFIX)/bin/$(TARGET)

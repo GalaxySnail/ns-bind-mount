@@ -56,3 +56,8 @@ dkms.conf
 
 # Build output
 /ns-bind-mount
+
+# Python
+__pycache__/
+.pytest_cache/
+.venv/

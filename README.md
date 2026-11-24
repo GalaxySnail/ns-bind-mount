@@ -25,8 +25,15 @@ make            # build ./ns-bind-mount
 make test       # run the test suite
 ```
 
-Tests live in `tests/` and need no root: they create their own user and mount
-namespaces. See `tests/run-tests.sh` for details.
+Tests live in `tests/` and need no root: targets run in their own user and
+mount namespaces, created with bubblewrap (the design-case sandbox) and, as
+a cross-check, with `unshare`. The suite is written for pytest (`make test`;
+also runnable directly as `python3 -m pytest tests/`) and drives its
+sandbox targets over FIFOs carrying JSON Lines. Target construction lives
+in `tests/sandbox.py`; the observation script that runs inside the sandbox
+is `tests/target.py`; cases whose sources must be prepared by the caller
+(clean tmpfs) run their bodies inside `unshare -Urm`
+(`tests/clean_source_case.py`).
 
 ## License
 

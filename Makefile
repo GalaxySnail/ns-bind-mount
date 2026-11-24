@@ -1,6 +1,7 @@
 CC      ?= cc
 CFLAGS  ?= -O2 -g -Wall -Wextra
 LDFLAGS ?=
+PYTHON  ?= python3
 
 TARGET  := ns-bind-mount
 PREFIX  ?= /usr/local
@@ -16,7 +17,7 @@ clean:
 	rm -f $(TARGET)
 
 test: $(TARGET)
-	BIN=$(CURDIR)/$(TARGET) tests/run-tests.sh
+	$(PYTHON) -m pytest tests/test_ns_bind_mount.py --bin=$(CURDIR)/$(TARGET)
 
 install: $(TARGET)
 	install -Dm755 $(TARGET) $(DESTDIR)$(PREFIX)/bin/$(TARGET)
